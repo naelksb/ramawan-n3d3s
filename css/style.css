@@ -1,0 +1,758 @@
+/* ===================================
+   Ramawan App - Main Stylesheet
+   =================================== */
+
+/* CSS Variables for Theming */
+:root {
+    /* Colors - Light Mode */
+    --primary-color: #2d7a4f;
+    --primary-dark: #1e5738;
+    --primary-light: #4a9d6f;
+    --accent-color: #d4af37;
+    --accent-dark: #b8941f;
+    
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-gradient: linear-gradient(135deg, #2d7a4f 0%, #1e5738 100%);
+    
+    --text-primary: #1a1a1a;
+    --text-secondary: #6c757d;
+    --text-light: #ffffff;
+    
+    --border-color: #e0e0e0;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-primary: #0f1419;
+    --bg-secondary: #1a1f2e;
+    --bg-card: #252d3d;
+    --bg-gradient: linear-gradient(135deg, #1e5738 0%, #0d2e1f 100%);
+    
+    --text-primary: #e8eaed;
+    --text-secondary: #9aa0a6;
+    --text-light: #ffffff;
+    
+    --border-color: #3a4556;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ===================================
+   Global Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ===================================
+   Header
+   =================================== */
+
+.header {
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-normal);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.logo i {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-family: 'Amiri', serif;
+}
+
+.nav {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.theme-toggle {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+
+.hero {
+    background: var(--bg-gradient);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hijri-date {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Countdown Card */
+.countdown-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    max-width: 600px;
+    margin: var(--spacing-lg) auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.countdown-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    font-family: 'Amiri', serif;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+/* Ramadan Progress */
+.ramadan-progress {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    max-width: 600px;
+    margin: var(--spacing-lg) auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.ramadan-progress h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    font-family: 'Amiri', serif;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.progress-bar {
+    height: 12px;
+    background: var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--radius-sm);
+    transition: width var(--transition-slow);
+}
+
+/* ===================================
+   Prayer Section
+   =================================== */
+
+.prayer-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;
+}
+
+.location {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.prayer-times {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.prayer-card {
+    background: var(--bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.prayer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.prayer-card.active {
+    background: var(--bg-gradient);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.prayer-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--accent-color);
+}
+
+.prayer-card.active .prayer-icon {
+    color: white;
+}
+
+.prayer-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;
+}
+
+.prayer-time {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.prayer-card.active .prayer-time {
+    color: white;
+}
+
+.prayer-status {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.prayer-card.active .prayer-status {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Next Prayer */
+.next-prayer {
+    background: var(--bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.next-prayer h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: var(--spacing-xs) 0;
+    font-family: 'Amiri', serif;
+}
+
+.time-remaining {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* ===================================
+   Tracker Section
+   =================================== */
+
+.tracker-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--bg-secondary);
+}
+
+.tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.tracker-card {
+    background: var(--bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.tracker-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.tracker-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.tracker-card h3 i {
+    color: var(--accent-color);
+}
+
+/* Prayer Checklist */
+.prayer-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.checkbox-item:hover {
+    background: var(--bg-primary);
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-item span {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.tracker-progress {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Quran Tracker */
+.quran-tracker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.quran-tracker label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.quran-tracker input {
+    padding: var(--spacing-sm);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color var(--transition-fast);
+}
+
+.quran-tracker input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.tracker-stats {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.tracker-stats strong {
+    color: var(--primary-color);
+}
+
+/* Dzikir Counter */
+.dzikir-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.counter-display {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border: 4px solid var(--primary-color);
+}
+
+.btn-counter {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+.btn-counter:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.btn-reset {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 2px solid var(--border-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-reset:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.counter-target {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ===================================
+   Doa Section
+   =================================== */
+
+.doa-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.doa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.doa-card {
+    background: var(--bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.doa-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.doa-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    font-family: 'Amiri', serif;
+}
+
+.arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    line-height: 2;
+    text-align: right;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border-right: 4px solid var(--accent-color);
+}
+
+.latin {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.translation {
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* ===================================
+   Footer
+   =================================== */
+
+.footer {
+    background: var(--bg-secondary);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--spacing-xl);
+}
+
+.footer p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer i {
+    color: #e74c3c;
+}
+
+.footer-note {
+    font-size: 0.85rem;
+}
+
+/* ===================================
+   Animations
+   =================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
